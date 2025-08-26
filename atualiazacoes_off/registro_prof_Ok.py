@@ -105,8 +105,7 @@ class TelaCadastroProfessor(ttk.Frame):
         botao_consultar = ttk.Button(self, text="Consultar registros", command=self.consultar_professores)
         botao_consultar.grid(row=9, column=1, columnspan=2, pady=(10, 20), sticky="ew")
 
-    def cadastrar_professor(self):
-        """Salva os dados do professor no banco diretamente dos Entry."""
+    def cadastrar_professor(self):#Salva os dados do professor no banco diretamente dos Entry.
         try:
             con = sqlite3.connect("instituicao.db")
             cur = con.cursor()
@@ -132,8 +131,7 @@ class TelaCadastroProfessor(ttk.Frame):
         except Exception as e:
             messagebox.showerror("Erro", f"Falha ao salvar os dados:\n{e}")
 
-    def consultar_professores(self):
-        """Abre uma nova janela com todos os professores cadastrados e permite deletar."""
+    def consultar_professores(self):#Abre uma nova janela com todos os professores cadastrados e permite deletar um registro
         consulta_win = tk.Toplevel(self.container)
         consulta_win.title("Consulta de Professores")
         consulta_win.geometry("900x400")
@@ -154,8 +152,8 @@ class TelaCadastroProfessor(ttk.Frame):
             tree.insert("", "end", values=row)
         con.close()
 
-        # Botão para deletar registro selecionado
-        def deletar_selecionado():
+        
+        def deletar_selecionado(): # Função para deletar registro selecionado
             item = tree.selection()
             if not item:
                 messagebox.showerror("Erro", "Selecione um professor para deletar!")
